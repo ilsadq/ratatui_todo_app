@@ -1,13 +1,10 @@
-use crate::actions::action::{ActionType};
-use crate::store::state::AppState;
+use crate::actions::ActionType;
 use crate::types::Todo;
 
-pub trait Store {
-    /// Store constructor
-    fn new() -> Self;
+use super::Store;
 
-    /// Actions handler
-    fn handle_action(&mut self, action: ActionType) -> Result<(), String>;
+pub struct AppState {
+    pub(super) todos: Vec<Todo>
 }
 
 pub struct AppStore {

@@ -1,5 +1,7 @@
-use crate::actions::action::{ActionType};
-use crate::store::store::{AppStore, Store};
+use crate::store::store::AppStore;
+use crate::store::Store;
+
+use super::ActionType;
 
 pub trait Dispatcher<'a, T> where T: Store {
     /// Dispatcher constructor

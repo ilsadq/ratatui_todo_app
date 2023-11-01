@@ -1,10 +1,12 @@
-use crate::actions::action::ActionType;
+use crate::actions::ActionType;
 use crate::actions::dispatcher::{AppDispatcher, Dispatcher};
-use crate::store::store::{AppStore, Store};
+use crate::store::Store;
+use crate::store::store::AppStore;
 
 mod store;
 mod types;
 mod actions;
+mod view;
 
 fn main() {
     let mut store = AppStore::new();
@@ -26,13 +28,7 @@ fn main() {
     _ = provider.dispatch(ActionType::AddTodo("Начать работать".to_string()));
     _ = provider.dispatch(ActionType::AddTodo("Приготовить ужин".to_string()));
 
-    let result = provider.dispatch(ActionType::CompleteTodo(5));
-
-    match result {
-        Ok(_) => {},
-        Err(err) => println!("{}", err),
-    }
-
+    _ = provider.dispatch(ActionType::CompleteTodo(5));
     _ = provider.dispatch(ActionType::CompleteTodo(0));
 
     for todo in &store.get_todos() {
